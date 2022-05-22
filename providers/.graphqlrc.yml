@@ -1,0 +1,12 @@
+schema: https://apps-test-env.eu.saleor.cloud/graphql/
+documents: graphql/**/*.graphql
+extensions:
+  codegen:
+    overwrite: true
+    generates:
+      generated/graphql.ts:
+        plugins:
+          - typescript
+          - typescript-operations
+          - urql-introspection
+          - typescript-urql
