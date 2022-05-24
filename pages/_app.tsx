@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-
 import "../styles/globals.css";
 import AppBridgeProvider from "../providers/AppBridgeProvider";
 import GraphQLProvider from "../providers/GraphQLProvider";

@@ -9,7 +9,7 @@ const Configuration: NextPage = () => {
 
   const [configuration, setConfiguration] = useState(null);
   const [{ data, error, fetching }] = useFetchAllCheckoutsQuery();
-
+  console.log(configuration);
   useEffect(() => {
     appState?.domain &&
       appState?.token &&

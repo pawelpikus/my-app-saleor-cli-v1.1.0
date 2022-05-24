@@ -12,7 +12,7 @@ export const getBaseURL = (req: NextApiRequest): string => {
 
 export const domainMiddleware = (request: NextApiRequest) => {
   const saleorDomain = request.headers[Constants.SALEOR_DOMAIN_HEADER];
-  console.log(request.headers);
+
   if (!saleorDomain) {
     throw new MiddlewareError("Missing saleor domain token.", 400);
   }

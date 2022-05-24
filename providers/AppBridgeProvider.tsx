@@ -1,5 +1,5 @@
 import { App, createApp } from "@saleor/app-bridge";
-import React, { createContext, useMemo } from "react";
+import React, { createContext, PropsWithChildren, useMemo } from "react";
 
 interface IAppContext {
   app?: App;
@@ -7,10 +7,10 @@ interface IAppContext {
 
 export const AppContext = createContext<IAppContext>({ app: undefined });
 
-const AppBridgeProvider = (props: React.ReactNode) => {
+const AppBridgeProvider: React.FC<PropsWithChildren<{}>> = (props) => {
   const app = useMemo(() => {
     if (typeof window !== "undefined") {
-      return createApp();
+      return createApp(`apps-test-env.eu.saleor.cloud`);
     }
   }, []);
 

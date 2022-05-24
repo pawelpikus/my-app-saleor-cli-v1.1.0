@@ -21,24 +21,23 @@ const filterConfigFromMetadata = (input: MetadataInput[] | MetadataItem[]) =>
     .map(({ key, value }) => ({ key, value }));
 
 const handler: NextApiHandler = async (request, response) => {
-  // let saleorDomain: string;
+  let saleorDomain: string;
 
-  // try {
-  //   saleorDomain = domainMiddleware(request) as string;
-  //   await jwtVerifyMiddleware(request);
-  // } catch (e: unknown) {
-  //   const error = e as MiddlewareError;
+  try {
+    saleorDomain = domainMiddleware(request) as string;
+    await jwtVerifyMiddleware(request);
+  } catch (e: unknown) {
+    const error = e as MiddlewareError;
 
-  //   console.error(error);
-  //   response
-  //     .status(error.statusCode)
-  //     .json({ success: false, message: error.message });
-  //   return;
-  // }
+    console.error(error);
+    response
+      .status(error.statusCode)
+      .json({ success: false, message: error.message });
+    return;
+  }
 
-  const client = createClient(
-    `https://apps-test-env.eu.saleor.cloud/graphql/`,
-    async () => Promise.resolve({ token: getAuthToken() })
+  const client = createClient(`https://${saleorDomain}/graphql/`, async () =>
+    Promise.resolve({ token: getAuthToken() })
   );
 
   let privateMetadata;
